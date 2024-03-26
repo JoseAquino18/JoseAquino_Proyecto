@@ -1,0 +1,72 @@
+@startuml
+
+entity "Usuarios" as Usuarios {
+  * UserId : int
+  --
+  + Username : string
+  + Password : string
+  + Email : string
+
+}
+
+entity "Libros" as Libros {
+  * boockId : int
+  + Name : string
+  + Disponibles : string
+  + UserId : int
+  + AutorId : int
+}
+
+entity "Resenas" as Resenas {
+  * resenaId : int
+  --
+  + Name : string
+  + libroId : string
+}
+
+entity "Autor" as Autor {
+  * autorId : int
+  --
+  + Name : string
+  + Password : string
+  + Email : string
+
+}
+
+entity "Categoria" as Categoria {
+  * categoriaId : int
+  --
+  + Name : string
+  
+}
+
+entity "UsuariosResenas" as UsuarioResena {
+  * UsuarioResenaId : int
+  --
+  + UsuarioId : int
+  + ResenaId : int
+ 
+}
+
+entity "LibrosCategoria" as LibroCategoria {
+  * LibroResenaId : int
+  --
+  + LibroId : int
+  + CategoriaId : int
+ 
+}
+
+
+
+
+Usuarios||--o{Libros
+Usuarios||--o{ UsuarioResena
+Resenas||--o{ UsuarioResena
+
+Libros||--o{Resenas
+Libros}o--||Autor
+Libros||--o{LibroCategoria
+Categoria||--o{LibroCategoria
+
+
+@enduml
